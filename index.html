@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Portfolio Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Theme Switcher Icon -->
+    <button id="themeSwitcher" class="theme-switcher" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <h1>🚀 Personal Webpage Generator</h1>
+
+        <h2>🎨 Build Your First Webpage!</h2>
+
+        <div class="interactive-demo">
+
+            <p>Fill out your details and watch your webpage generate instantly!</p>
+
+            <!-- Auto-save indicator -->
+            <div id="autoSaveIndicator" class="auto-save-indicator">Saved ✓</div>
+
+            <!-- NAME INPUT -->
+            <label for="nameInput">Your Name:</label>
+            <input type="text" id="nameInput" placeholder="Enter your name">
+
+            <!-- COLOR PICKER + COLOR TEXT BOTH -->
+            <label for="colorPicker">Select your favourite color:</label>
+            <div class="color-input-group">
+                <input type="color" id="colorPicker" value="#667eea">
+                <input type="text" id="favoriteColor" placeholder="Or type a color name or hex code (blue, #ff00ff)">
+            </div>
+
+            <!-- BIO INPUT -->
+            <label for="bioInput">Write your bio:</label>
+            <textarea id="bioInput" rows="3" placeholder="Write a short bio about yourself"></textarea>
+
+            <!-- SKILLS INPUT -->
+            <label for="skillsInput">Your Skills (comma-separated):</label>
+            <textarea id="skillsInput" rows="2" placeholder="e.g., HTML, CSS, Python, Data Entry, Design"></textarea>
+
+            <!-- SOCIAL LINKS SECTION -->
+            <label>Social Links (Optional):</label>
+            <div class="social-links-inputs">
+                <input type="url" id="instagramInput" placeholder="Instagram URL (optional)">
+                <input type="url" id="linkedinInput" placeholder="LinkedIn URL (optional)">
+                <input type="url" id="githubInput" placeholder="GitHub URL (optional)">
+                <input type="url" id="portfolioInput" placeholder="Portfolio URL (optional)">
+            </div>
+
+            <!-- THEME CARDS (replacing dropdown) -->
+            <label>Choose theme for your webpage:</label>
+            <div class="theme-cards-container" id="themeCardsContainer">
+                <div class="theme-card" data-theme="light">
+                    <div class="theme-preview theme-light"></div>
+                    <span>Light</span>
+                </div>
+                <div class="theme-card" data-theme="white">
+                    <div class="theme-preview theme-white"></div>
+                    <span>White</span>
+                </div>
+                <div class="theme-card active" data-theme="dark">
+                    <div class="theme-preview theme-dark"></div>
+                    <span>Dark</span>
+                </div>
+                <div class="theme-card" data-theme="black">
+                    <div class="theme-preview theme-black"></div>
+                    <span>Black</span>
+                </div>
+                <div class="theme-card" data-theme="gradient">
+                    <div class="theme-preview theme-gradient"></div>
+                    <span>Gradient</span>
+                </div>
+                <div class="theme-card" data-theme="colorful">
+                    <div class="theme-preview theme-colorful"></div>
+                    <span>Colorful</span>
+                </div>
+            </div>
+
+            <!-- FONT SELECTOR -->
+            <label for="fontSelector">Choose Font Style:</label>
+            <div class="font-cards-container" id="fontCardsContainer">
+                <div class="font-card active" data-font="Poppins">
+                    <span style="font-family: Poppins;">Poppins</span>
+                </div>
+                <div class="font-card" data-font="Inter">
+                    <span style="font-family: Inter;">Inter</span>
+                </div>
+                <div class="font-card" data-font="Roboto">
+                    <span style="font-family: Roboto;">Roboto</span>
+                </div>
+                <div class="font-card" data-font="Playfair Display">
+                    <span style="font-family: 'Playfair Display';">Playfair</span>
+                </div>
+                <div class="font-card" data-font="Lobster">
+                    <span style="font-family: Lobster;">Lobster</span>
+                </div>
+            </div>
+
+            <!-- LAYOUT STYLE SELECTOR -->
+            <label>Choose Layout Style:</label>
+            <div class="layout-cards-container" id="layoutCardsContainer">
+                <div class="layout-card active" data-layout="centered">
+                    <div class="layout-preview">
+                        <div class="layout-icon-centered">
+                            <div class="icon-circle"></div>
+                            <div class="icon-line"></div>
+                            <div class="icon-line short"></div>
+                        </div>
+                    </div>
+                    <span>Centered</span>
+                </div>
+                <div class="layout-card" data-layout="side">
+                    <div class="layout-preview">
+                        <div class="layout-icon-side">
+                            <div class="icon-circle-left"></div>
+                            <div class="icon-lines-right">
+                                <div class="icon-line"></div>
+                                <div class="icon-line short"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <span>Side Profile</span>
+                </div>
+            </div>
+
+            <!-- ANIMATION SELECTOR -->
+            <label for="animationSelector">Page Animation:</label>
+            <select id="animationSelector" class="animation-selector">
+                <option value="fadeIn">Fade In</option>
+                <option value="slideUp">Slide Up</option>
+                <option value="slideLeft">Slide Left</option>
+                <option value="typewriter">Typewriter (Name only)</option>
+            </select>
+
+            <!-- PROFILE IMAGE UPLOAD -->
+            <label for="profileImage">Upload Profile Image:</label>
+            <input type="file" id="profileImage" accept="image/*">
+
+            <img id="imgPreview" class="img-preview">
+
+            <!-- BUTTONS -->
+            <div class="button-group">
+                <button onclick="generateWebpage()">Generate My Webpage ✨</button>
+                <button onclick="clearAll()">Reset ❌</button>
+                <button onclick="downloadWebpage()">Download Webpage 💾</button>
+                <button onclick="shareWebpage()" id="shareBtn">Share My Webpage 🔗</button>
+            </div>
+
+            <!-- OUTPUT PREVIEW -->
+            <div class="output" id="output">
+                <p style="color: #999;">Your webpage will appear here...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast">Copied! ✓</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
